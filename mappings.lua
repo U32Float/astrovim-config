@@ -1,28 +1,38 @@
--- Mapping data with "desc" stored directly by vim.keymap.set().
---
--- Please use this mappings table to set keyboard mapping since this is the
--- lower level configuration and more robust one. (which-key will
--- automatically pick-up stored data by this setting.)
 return {
-  -- first key is the mode
   n = {
-    -- second key is the lefthand side of the map
-    -- mappings seen under group name "Buffer"
-    ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-    ["<leader>bD"] = {
-      function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
-      end,
-      desc = "Pick to close",
-    },
-    -- tables with the `name` key will be registered with which-key if it's installed
-    -- this is useful for naming menus
-    ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["x"] = { '"_x', desc = "Delete char wihout copy"},
+    ["X"] = { '"_X', desc = "Delete char (before) wihout copy"},
+    
+    ["s"] = { '"_d', desc = "Delete wihout copy"},
+    ["S"] = { '"_D', desc = "Delete rest of line wihout copy"},
+    ["ss"] = { '"_dd', desc = "Delete line wihout copy"},
+
+    
+    ["c"] = { '"_c', desc = "Replace wihout copy"},
+    ["cc"] = { '"_cc', desc = "Replace line wihout copy"},
+    ["C"] = { '"_C', desc = "Replace rest of line wihout copy"},
+    
+    ["<cr>"] = {"@q", desc = "Apply macro (q)"},
+
+    ["*"] = {"*N", desc = "Select all occurences", silent = true},
+    ["<leader>n"] = { ":noh <cr>", silent = true, nowait = true, desc = "Remove highlights"},
+    
+    ["<leader>A"] = {"ggVG", desc = "Select all"},
+
+    ["<S-l>"] = {"$", desc = "Go to end of line"},
+    ["<S-h>"] = {"^", desc = "Go to beginning of line"},
+    ["<S-m>"] = false, -- Remove binding
+  },
+  v = {
+    ["s"] = { '"_d', desc = "Delete wihout copy"},
+    ["c"] = { '"_c', desc = "Replace wihout copy"},
+    
+    ["<S-l>"] = {"$", desc = "Go to end of line"},
+    ["<S-h>"] = {"^", desc = "Go to beginning of line"},
+    ["<S-m>"] = false, -- Remove binding
   },
   t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
   },
 }
+
+
