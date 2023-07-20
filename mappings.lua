@@ -1,4 +1,7 @@
 return {
+  i = {
+    ["jk"] = { "<Esc>", desc = "Escape insert mode", noremap = true },
+  },
   n = {
     ["x"] = { '"_x', desc = "Delete char wihout copy" },
     ["X"] = { '"_X', desc = "Delete char (before) wihout copy" },
@@ -24,6 +27,9 @@ return {
 
     ["<C-j>"] = { function() require("neoscroll").scroll(25, true, 50, nil, {}) end, desc = "Scroll down" },
     ["<C-k>"] = { function() require("neoscroll").scroll(-25, true, 50, nil, {}) end, desc = "Scroll up" },
+
+    ["<leader>ut"] = { "<cmd>Telescope colorscheme<cr>", desc = "Switch colorscheme" },
+    ["<leader>L"] = { "<cmd>Lazy<cr>", desc = "Open Lazy" },
   },
   v = {
     ["s"] = { '"_d', desc = "Delete wihout copy" },
