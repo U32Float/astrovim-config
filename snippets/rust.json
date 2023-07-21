@@ -1,0 +1,38 @@
+{
+    "Readline items method": {
+        "prefix": "read_line_items",
+        "body": [
+            "fn read_line_items<T>() -> Vec<T> where T: std::str::FromStr, T::Err: std::fmt::Debug, {let mut buffer = String::new();std::io::stdin().read_line(&mut buffer).ok();buffer.split_whitespace().map(|w| w.trim().parse::<T>().unwrap()).collect()}"
+        ]
+    },
+    "Place a horizontal separator": {
+        "prefix": "separator",
+        "body": [
+            "// ----------------------------------------------------------------------------"
+        ]
+    },
+    "Place a segment line with a name": {
+        "prefix": "segment",
+        "body": [
+            "// ----------------------------------------------------------------------------\n// ${name}:"
+        ]
+    },
+    "Place a big segment line": {
+        "prefix": "bigsegment",
+        "body": [
+            "// ============================================================================\n// ==== # ${name}:"
+        ]
+    },
+    "Debug print": {
+        "prefix": "debug",
+        "body": [
+            "println!(\"{:?}\", ${value});"
+        ]
+    },
+    "print": {
+        "prefix": "print",
+        "body": [
+            "println!(\"${value}\");"
+        ]
+    }
+}
