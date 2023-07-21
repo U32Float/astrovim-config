@@ -99,6 +99,11 @@ return {
       desc = "Switch Dark/Light mode",
       nowait = true,
     },
+
+    ["<leader>a"] = {
+      function() vim.lsp.buf.code_action() end,
+      desc = "LSP code action",
+    },
   },
   v = {
     ["s"] = { '"_d', desc = "Delete wihout copy" },
