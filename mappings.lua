@@ -36,6 +36,11 @@ function get_root()
   return root
 end
 
+DARKMODE = true
+
+LIGHT_THEME = "gruvbox"
+DARK_THEME = "everforest"
+
 return {
   i = {
     ["jk"] = { "<Esc>", desc = "Escape insert mode", noremap = true },
@@ -77,6 +82,22 @@ return {
         }
       end,
       desc = "Explorer NeoTree (root dir)",
+    },
+
+    ["<leader>T"] = {
+      function()
+        if DARKMODE then
+          DARKMODE = false
+          vim.cmd "set background=light"
+          vim.cmd("colorscheme " .. LIGHT_THEME)
+        else
+          DARKMODE = true
+          vim.cmd "set background=dark"
+          vim.cmd("colorscheme " .. DARK_THEME)
+        end
+      end,
+      desc = "Switch Dark/Light mode",
+      nowait = true,
     },
   },
   v = {
