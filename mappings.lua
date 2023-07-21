@@ -46,6 +46,7 @@ return {
     ["jk"] = { "<Esc>", desc = "Escape insert mode", noremap = true },
   },
   n = {
+    ["<Esc>"] = { function() require("notify").dismiss() end, desc = "Dismiss notifications" },
     ["x"] = { '"_x', desc = "Delete char wihout copy" },
     ["X"] = { '"_X', desc = "Delete char (before) wihout copy" },
 
