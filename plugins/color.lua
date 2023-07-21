@@ -7,6 +7,7 @@ return {
   { "sainnhe/sonokai", lazy = false },
   { "tomasiser/vim-code-dark", lazy = false },
   { "sainnhe/edge", lazy = false },
+  { "rose-pine/neovim", name = "rose-pine", lazy = false },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,
