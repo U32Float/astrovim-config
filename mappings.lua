@@ -102,8 +102,13 @@ return {
           dir = get_root(),
           position = "right",
         }
+        -- vim.cmd "Neotree reveal"
       end,
       desc = "Explorer NeoTree (root dir)",
+    },
+    ["<leader>E"] = {
+      function() vim.cmd "Neotree reveal" end,
+      desc = "Reveal file in tree",
     },
 
     ["<leader>T"] = {

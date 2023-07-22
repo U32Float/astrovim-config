@@ -11,17 +11,4 @@ return {
       },
     }
   end,
-  keys = {
-    {
-      "<leader>E",
-      function()
-        require("neo-tree.command").execute {
-          toggle = true,
-          dir = vim.loop.cwd(),
-          position = "right",
-        }
-      end,
-      desc = "Explorer NeoTree (cwd)",
-    },
-  },
 }
