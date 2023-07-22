@@ -90,6 +90,8 @@ return {
     ["<S-h>"] = { "^", desc = "Go to beginning of line" },
     ["<S-m>"] = false, -- Remove binding
 
+    ["<C-u>"] = { "<C-w><C-k>" },
+    ["<C-d>"] = { "<C-w><C-j>" },
     ["<C-j>"] = { function() require("neoscroll").scroll(25, true, 50, nil, {}) end, desc = "Scroll down" },
     ["<C-k>"] = { function() require("neoscroll").scroll(-25, true, 50, nil, {}) end, desc = "Scroll up" },
 
