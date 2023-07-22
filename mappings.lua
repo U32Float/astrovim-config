@@ -36,6 +36,27 @@ function get_root()
   return root
 end
 
+-- Function to check if a floating dialog exists and if not
+-- then check for diagnostics under the cursor
+-- Show diagnostics under the cursor when holding position
+function OpenDiagnosticIfNoFloat()
+  for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if vim.api.nvim_win_get_config(winid).zindex then return end
+  end
+  -- THIS IS FOR BUILTIN LSP
+  vim.diagnostic.open_float(0, {
+    scope = "cursor",
+    focusable = false,
+    close_events = {
+      "CursorMoved",
+      "CursorMovedI",
+      "BufHidden",
+      "InsertCharPre",
+      "WinLeave",
+    },
+  })
+end
+
 DARKMODE = true
 
 LIGHT_THEME = "gruvbox"
@@ -105,10 +126,21 @@ return {
       function() vim.lsp.buf.code_action() end,
       desc = "LSP code action",
     },
+    -- ["K"] = { function() vim.lsp.buf.hover() end, desc = "Lsp symbol hover" },
+    ["gh"] = { OpenDiagnosticIfNoFloat, desc = "Lsp diagnostics hover" },
 
     ["<leader>w"] = { "<cmd>HopWordCurrentLine<cr>", desc = "Hop to word in current line", nowait = true },
     ["<leader>j"] = { "<cmd>HopLineStartAC<cr>", desc = "Hop to line under cursor", nowait = true },
     ["<leader>k"] = { "<cmd>HopLineStartBC<cr>", desc = "Hop to line above cursor", nowait = true },
+
+    ["<leader>D"] = {
+      function() vim.cmd "UniteWithCursorWord rust/doc" end,
+      desc = "Search for word under cursor in docs",
+    },
+    ["<leader>fd"] = {
+      function() vim.cmd "UniteWithInput rust/doc" end,
+      desc = "Search in docs",
+    },
   },
   v = {
     ["s"] = { '"_d', desc = "Delete wihout copy" },
