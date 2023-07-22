@@ -134,11 +134,23 @@ return {
     ["<leader>k"] = { "<cmd>HopLineStartBC<cr>", desc = "Hop to line above cursor", nowait = true },
 
     ["<leader>D"] = {
-      function() vim.cmd "UniteWithCursorWord rust/doc" end,
+      function()
+        if vim.bo.filetype ~= "rust" then
+          require("notify").notify("Not supported for files with filetype: " .. vim.bo.filetype)
+          return
+        end
+        vim.cmd "UniteWithCursorWord rust/doc"
+      end,
       desc = "Search for word under cursor in docs",
     },
     ["<leader>fd"] = {
-      function() vim.cmd "UniteWithInput rust/doc" end,
+      function()
+        if vim.bo.filetype ~= "rust" then
+          require("notify").notify("Not supported for files with filetype: " .. vim.bo.filetype)
+          return
+        end
+        vim.cmd "UniteWithInput rust/doc"
+      end,
       desc = "Search in docs",
     },
   },
