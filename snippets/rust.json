@@ -6,7 +6,7 @@
         ]
     },
     "Place a horizontal separator": {
-        "prefix": "separator",
+        "prefix": "sep",
         "body": [
             "// ----------------------------------------------------------------------------"
         ]
@@ -24,13 +24,13 @@
         ]
     },
     "Debug print": {
-        "prefix": "debug",
+        "prefix": "deb",
         "body": [
             "println!(\"{:?}\", ${value});"
         ]
     },
     "print": {
-        "prefix": "print",
+        "prefix": "pri",
         "body": [
             "println!(\"${value}\");"
         ]
