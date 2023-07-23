@@ -57,8 +57,6 @@ function OpenDiagnosticIfNoFloat()
   })
 end
 
-DARKMODE = true
-
 LIGHT_THEME = "gruvbox"
 DARK_THEME = "everforest"
 
@@ -115,12 +113,13 @@ return {
 
     ["<leader>T"] = {
       function()
-        if DARKMODE then
-          DARKMODE = false
+        local util = require "user.util"
+        if util.read("darkmode", true) then
+          util.write("darkmode", false)
           vim.cmd "set background=light"
           vim.cmd("colorscheme " .. LIGHT_THEME)
         else
-          DARKMODE = true
+          util.write("darkmode", true)
           vim.cmd "set background=dark"
           vim.cmd("colorscheme " .. DARK_THEME)
         end

@@ -102,5 +102,13 @@ return {
         completeopt = "menu,menuone",
       },
     }
+
+    if require("user.util").read("darkmode", true) then
+      vim.cmd "set background=dark"
+      vim.cmd("colorscheme " .. DARK_THEME)
+    else
+      vim.cmd "set background=light"
+      vim.cmd("colorscheme " .. LIGHT_THEME)
+    end
   end,
 }
