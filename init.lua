@@ -77,6 +77,9 @@ return {
         { name = "buffer", keyword_length = 3 },
         { name = "luasnip", keyword_length = 2 },
       },
+      mapping = {
+        ["<Tab>"] = cmp.mapping.confirm { select = true },
+      },
       experimental = {
         ghost_text = {
           hl_group = "ignore",
