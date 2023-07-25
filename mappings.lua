@@ -65,7 +65,13 @@ return {
     ["jk"] = { "<Esc>", desc = "Escape insert mode", noremap = true },
   },
   n = {
-    ["<Esc>"] = { function() require("notify").dismiss() end, desc = "Dismiss notifications" },
+    ["<Esc>"] = {
+      function()
+        vim.cmd ":noh"
+        require("notify").dismiss()
+      end,
+      desc = "Dismiss notifications",
+    },
     ["x"] = { '"_x', desc = "Delete char wihout copy" },
     ["X"] = { '"_X', desc = "Delete char (before) wihout copy" },
 
@@ -166,6 +172,23 @@ return {
         vim.cmd "UniteWithInput rust/doc"
       end,
       desc = "Search in docs",
+    },
+
+    ["<leader>fs"] = {
+      function() vim.cmd "Telescope lsp_document_symbols" end,
+      desc = "Search lsp document symbols",
+    },
+    ["<leader>fw"] = {
+      function() vim.cmd "Telescope lsp_workspace_symbols" end,
+      desc = "Search lsp document symbols",
+    },
+    ["<leader>P"] = {
+      function() vim.cmd "AerialNavToggle" end,
+      desc = "Toggle outline popup",
+    },
+    ["<leader>O"] = {
+      function() vim.cmd "AerialToggle" end,
+      desc = "Toggle outline",
     },
   },
   v = {
