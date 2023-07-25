@@ -21,6 +21,14 @@ end
 function override_gruvbox()
   vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#d5c4a1", default = false })
   vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = "#b57614", default = false })
+  vim.api.nvim_set_hl(0, "IncSearch", { link = "PMenuSel", default = false })
+  vim.api.nvim_set_hl(0, "Search", { link = "PMenu", default = false })
+  vim.api.nvim_set_hl(0, "CurSearch", { link = "PMenuSel", default = false })
+end
+
+function override_colorscheme()
+  vim.api.nvim_set_hl(0, "HlSearchLens", { link = "DiagnosticVirtualTextInfo", default = false })
+  vim.api.nvim_set_hl(0, "HlSearchLensNear", { link = "DiagnosticVirtualTextInfo", default = false })
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -30,6 +38,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "gruvbox",
   command = "lua override_gruvbox()",
+})
+vim.api.nvim_create_autocmd("ColorScheme", {
+  command = "lua override_colorscheme()",
 })
 
 return {

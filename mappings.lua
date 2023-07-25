@@ -79,7 +79,15 @@ return {
 
     ["<cr>"] = { "@q", desc = "Apply macro (q)" },
 
-    ["*"] = { "*N", desc = "Select all occurences", silent = true },
+    -- ["*"] = { "*N", desc = "Select all occurences", silent = true },
+    ["*"] = {
+      function()
+        require("lasterisk").search()
+        require("hlslens").start()
+      end,
+      desc = "Select all occurences",
+      silent = true,
+    },
     ["<leader>n"] = { ":noh <cr>", silent = true, nowait = true, desc = "Remove highlights" },
 
     ["<leader>A"] = { "ggVG", desc = "Select all" },
@@ -175,7 +183,6 @@ return {
     ["<leader>j"] = { "<cmd>HopLineStartAC<cr>", desc = "Hop to line under cursor", nowait = true },
     ["<leader>k"] = { "<cmd>HopLineStartBC<cr>", desc = "Hop to line above cursor", nowait = true },
 
-    -- ["*"] = { "*N", desc = "Select all occurences", silent = true },
     ["<leader>n"] = { ":noh <cr>", silent = true, nowait = true, desc = "Remove highlights" },
   },
   t = {},
