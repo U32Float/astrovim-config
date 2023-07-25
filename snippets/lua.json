@@ -1,0 +1,26 @@
+{
+    "Place a horizontal separator": {
+        "prefix": "sep",
+        "body": [
+            "-- ----------------------------------------------------------------------------"
+        ]
+    },
+    "Place a segment line with a name": {
+        "prefix": "segment",
+        "body": [
+            "-- ----------------------------------------------------------------------------\n-- ${name}:"
+        ]
+    },
+    "Place a big segment line": {
+        "prefix": "bigsegment",
+        "body": [
+            "-- ============================================================================\n-- ==== # ${name}:"
+        ]
+    },
+    "Notify": {
+        "prefix": "noti",
+        "body": [
+            "require(\"notify\").notify(\"${value}\")"
+        ]
+    }
+}

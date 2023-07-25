@@ -1,3 +1,3 @@
 return {
-  { "max397574/better-escape.nvim", disable = true, lazy = false },
+  { "max397574/better-escape.nvim", disable = true, lazy = true },
 }

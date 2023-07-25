@@ -19,7 +19,7 @@ return {
       dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
       dashboard.button("c", " " .. " Config", ":e ~/.config/nvim/lua/user/init.lua<CR>"),
       dashboard.button("s", " " .. " Restore session", [[:lua require("persistence").load() <cr>]]),
-      dashboard.button("p", "󰥻" .. "  Practice typing", ":lua require('typebreak').start() <cr>"),
+      dashboard.button("t", "󰥻" .. "  Typing practice", ":lua require('typebreak').start() <cr>"),
       dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),
     }

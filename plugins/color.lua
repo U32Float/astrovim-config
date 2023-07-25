@@ -1,18 +1,37 @@
-vim.g.everforest_background = "dark"
-vim.g.everforest_colors_override = {
-  -- bg_dim = { "#000000", "233" },
-  -- bg0 = { "#000000", "235" },
-  -- bg1 = { "#141414", "236" },
-  -- bg2 = { "#1d1d1d", "237" },
-  -- bg3 = { "#282828", "238" },
-  -- bg4 = { "#323232", "239" },
-  -- bg5 = { "#3b3b3b", "240" },
-  -- bg_red = { "#514045", "52" },
-  -- bg_green = { "#425047", "22" },
-  -- bg_blue = { "#3a515d", "17" },
-  -- bg_yellow = { "#4d4c43", "136" },
-  bg_visual = { "#485e61", "255" },
-}
+function override_everforest()
+  vim.g.everforest_background = "dark"
+  vim.g.everforest_colors_override = {
+    -- bg_dim = { "#000000", "233" },
+    -- bg0 = { "#000000", "235" },
+    -- bg1 = { "#141414", "236" },
+    -- bg2 = { "#1d1d1d", "237" },
+    -- bg3 = { "#282828", "238" },
+    -- bg4 = { "#323232", "239" },
+    -- bg5 = { "#3b3b3b", "240" },
+    -- bg_red = { "#514045", "52" },
+    -- bg_green = { "#425047", "22" },
+    -- bg_blue = { "#3a515d", "17" },
+    -- bg_yellow = { "#4d4c43", "136" },
+    bg_visual = { "#485e61", "255" },
+  }
+
+  vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#434f55", default = false })
+end
+
+function override_gruvbox()
+  vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#d5c4a1", default = false })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = "#b57614", default = false })
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "everforest",
+  command = "lua override_everforest()",
+})
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "gruvbox",
+  command = "lua override_gruvbox()",
+})
+
 return {
   { "Mofiqul/vscode.nvim", lazy = false },
   { "joshdick/onedark.vim", lazy = false },

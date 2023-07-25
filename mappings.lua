@@ -93,8 +93,8 @@ return {
     ["<C-j>"] = { function() require("neoscroll").scroll(25, true, 50, nil, {}) end, desc = "Scroll down" },
     ["<C-k>"] = { function() require("neoscroll").scroll(-25, true, 50, nil, {}) end, desc = "Scroll up" },
 
-    ["<leader>ut"] = { "<cmd>Telescope colorscheme<cr>", desc = "Switch colorscheme" },
     ["<leader>L"] = { "<cmd>Lazy<cr>", desc = "Open Lazy" },
+
     ["<leader>e"] = {
       function()
         require("neo-tree.command").execute {
@@ -174,6 +174,9 @@ return {
     ["<leader>w"] = { "<cmd>HopWordCurrentLine<cr>", desc = "Hop to word in current line", nowait = true },
     ["<leader>j"] = { "<cmd>HopLineStartAC<cr>", desc = "Hop to line under cursor", nowait = true },
     ["<leader>k"] = { "<cmd>HopLineStartBC<cr>", desc = "Hop to line above cursor", nowait = true },
+
+    -- ["*"] = { "*N", desc = "Select all occurences", silent = true },
+    ["<leader>n"] = { ":noh <cr>", silent = true, nowait = true, desc = "Remove highlights" },
   },
   t = {},
 }

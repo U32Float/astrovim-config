@@ -69,6 +69,8 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"]) -- Disable autoremove search hightlights
+
     local cmp = require "cmp"
     cmp.setup {
       sources = {
