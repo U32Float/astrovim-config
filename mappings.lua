@@ -106,6 +106,13 @@ return {
     ["<C-d>"] = { "<C-w><C-j>" },
     ["<C-j>"] = { function() require("neoscroll").scroll(25, true, 50, nil, {}) end, desc = "Scroll down" },
     ["<C-k>"] = { function() require("neoscroll").scroll(-25, true, 50, nil, {}) end, desc = "Scroll up" },
+    ["<ScrollWheelUp>"] = { function() require("neoscroll").scroll(-3, false, 1, nil, {}) end, desc = "Scroll down" },
+    ["<ScrollWheelDown>"] = { function() require("neoscroll").scroll(3, false, 1, nil, {}) end, desc = "Scroll up" },
+    ["<ScrollWheelUp-C>"] = {
+      function() require("neoscroll").scroll(-4, false, 1, nil, {}) end,
+      desc = "Scroll down",
+    },
+    ["<ScrollWheelDown-C>"] = { function() require("neoscroll").scroll(4, false, 1, nil, {}) end, desc = "Scroll up" },
 
     ["<leader>L"] = { "<cmd>Lazy<cr>", desc = "Open Lazy" },
 
@@ -180,7 +187,7 @@ return {
     },
     ["<leader>fw"] = {
       function() vim.cmd "Telescope lsp_workspace_symbols" end,
-      desc = "Search lsp document symbols",
+      desc = "Search lsp workspace symbols",
     },
     ["<leader>P"] = {
       function() vim.cmd "AerialNavToggle" end,
