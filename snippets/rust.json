@@ -34,5 +34,27 @@
         "body": [
             "println!(\"${value}\");"
         ]
+    },
+    "Cloneable handle to some state": {
+      "prefix": "handle",
+      "body": [
+        "#[derive(Clone)]",
+        "pub struct ${1:Handle}(std::sync::Arc<parking_lot::RwLock<${2:State}>>);",
+        "",
+        "impl ${1} {",
+        "  fn read<F, T>(&self, read: F) -> T",
+        "  where F: Fn(&${2}) -> T {",
+        "    read(&self.0.read())",
+        "  }",
+        "",
+        "  fn write<F, T>(&self, write: F) -> T",
+        "  where F: Fn(&mut ${2}) -> T {",
+        "    write(&mut self.0.write())",
+        "  }",
+        "} ",
+        "",
+        "struct ${2} {}"
+      ],
+      "description": "Cloneable handle to some state"
     }
 }
