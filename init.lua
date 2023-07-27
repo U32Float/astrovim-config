@@ -1,3 +1,4 @@
+local util = require "user.util"
 return {
   -- Configure AstroNvim updates
   updater = {

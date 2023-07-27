@@ -1,9 +1,5 @@
 return {
-  -- "kosayoda/nvim-lightbulb",
+  -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  -- config = function() require("lsp_lines").setup() end,
   -- lazy = false,
-  -- config = function()
-  --   require("nvim-lightbulb").setup {
-  --     autocmd = { enabled = true },
-  --   }
-  -- end,
 }

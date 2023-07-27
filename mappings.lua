@@ -1,3 +1,5 @@
+local util = require "user.util"
+
 -- returns the root directory based on:
 -- * lsp workspace folders
 -- * lsp root_dir
@@ -45,7 +47,7 @@ function OpenDiagnosticIfNoFloat()
   end
   -- THIS IS FOR BUILTIN LSP
   vim.diagnostic.open_float(0, {
-    scope = "cursor",
+    scope = "line",
     focusable = false,
     close_events = {
       "CursorMoved",
@@ -155,6 +157,14 @@ return {
     },
     -- ["K"] = { function() vim.lsp.buf.hover() end, desc = "Lsp symbol hover" },
     ["gh"] = { OpenDiagnosticIfNoFloat, desc = "Lsp diagnostics hover" },
+
+    ["<leader>uv"] = {
+      function()
+        vim.g.virtual_text = not vim.g.virtual_text
+        vim.diagnostic.config { virtual_text = vim.g.virtual_text }
+      end,
+      desc = "Toggle virtual text on/off",
+    },
 
     ["<leader>w"] = { "<cmd>HopWordCurrentLine<cr>", desc = "Hop to word in current line", nowait = true },
     ["<leader>j"] = { "<cmd>HopLineStartAC<cr>", desc = "Hop to line under cursor", nowait = true },
