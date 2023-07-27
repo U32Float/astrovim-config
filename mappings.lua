@@ -160,8 +160,9 @@ return {
 
     ["<leader>uv"] = {
       function()
-        vim.g.virtual_text = not vim.g.virtual_text
-        vim.diagnostic.config { virtual_text = vim.g.virtual_text }
+        local v = util.read("virtual_text", true)
+        util.write("virtual_text", not v)
+        vim.diagnostic.config { virtual_text = not v }
       end,
       desc = "Toggle virtual text on/off",
     },
