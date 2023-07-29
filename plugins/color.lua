@@ -1,3 +1,5 @@
+local util = require "user.util"
+
 function override_everforest()
   vim.g.everforest_background = "dark"
   vim.g.everforest_colors_override = {
@@ -31,6 +33,13 @@ function override_colorscheme()
   vim.api.nvim_set_hl(0, "HlSearchLensNear", { link = "DiagnosticVirtualTextInfo", default = false })
 end
 
+function on_colorscheme()
+  if vim.g.ready then
+    util.write("theme", { colorscheme = vim.g.colors_name, background = vim.opt.background._value })
+  end
+  override_colorscheme()
+end
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "everforest",
   command = "lua override_everforest()",
@@ -40,7 +49,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   command = "lua override_gruvbox()",
 })
 vim.api.nvim_create_autocmd("ColorScheme", {
-  command = "lua override_colorscheme()",
+  command = "lua on_colorscheme()",
 })
 
 return {
@@ -61,6 +70,7 @@ return {
   { "rose-pine/neovim", name = "rose-pine", lazy = false },
   { "gmr458/vscode_dark_modern.nvim", lazy = false },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
+  { "RRethy/nvim-base16", lazy = false },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,

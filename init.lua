@@ -32,7 +32,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true, -- enable or disable format on save globally
+        enabled = false, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -70,7 +70,18 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.g.ready = true
+
+    function set_tree_dir() vim.cmd("cd " .. get_root()) end
+    vim.api.nvim_create_autocmd("BufEnter", {
+      command = "lua set_tree_dir()",
+    })
+
     vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"]) -- Disable autoremove search hightlights
+
+    local theme = util.read("theme", { colorscheme = "everforest", background = "dark" })
+    vim.cmd("colorscheme " .. theme.colorscheme)
+    vim.cmd("set background=" .. theme.background)
 
     local cmp = require "cmp"
     cmp.setup {
@@ -105,13 +116,5 @@ return {
         completeopt = "menu,menuone",
       },
     }
-
-    if require("user.util").read("darkmode", true) then
-      vim.cmd "set background=dark"
-      vim.cmd("colorscheme " .. DARK_THEME)
-    else
-      vim.cmd "set background=light"
-      vim.cmd("colorscheme " .. LIGHT_THEME)
-    end
   end,
 }

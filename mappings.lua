@@ -85,7 +85,13 @@ return {
     ["cc"] = { '"_cc', desc = "Replace line wihout copy" },
     ["C"] = { '"_C', desc = "Replace rest of line wihout copy" },
 
-    ["<cr>"] = { "@q", desc = "Apply macro (q)" },
+    ["<cr>"] = {
+      function()
+        vim.api.nvim_feedkeys("@q", "m", false)
+        require("notify").notify("Applied macro (q)", "info")
+      end,
+      desc = "Apply macro (q)",
+    },
 
     -- ["*"] = { "*N", desc = "Select all occurences", silent = true },
     ["*"] = {
@@ -136,7 +142,6 @@ return {
 
     ["<leader>T"] = {
       function()
-        local util = require "user.util"
         if util.read("darkmode", true) then
           util.write("darkmode", false)
           vim.cmd "set background=light"
@@ -158,11 +163,17 @@ return {
     -- ["K"] = { function() vim.lsp.buf.hover() end, desc = "Lsp symbol hover" },
     ["gh"] = { OpenDiagnosticIfNoFloat, desc = "Lsp diagnostics hover" },
 
+    ["<S-cr>"] = {
+      function() vim.lsp.buf.format() end,
+      desc = "Format buffer",
+    },
+
     ["<leader>uv"] = {
       function()
         local v = util.read("virtual_text", true)
         util.write("virtual_text", not v)
         vim.diagnostic.config { virtual_text = not v }
+        require("notify").notify(string.format("Virtual text = %s", not v))
       end,
       desc = "Toggle virtual text on/off",
     },
