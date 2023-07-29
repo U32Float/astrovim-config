@@ -65,6 +65,30 @@ DARK_THEME = "everforest"
 return {
   i = {
     ["jk"] = { "<Esc>", desc = "Escape insert mode", noremap = true },
+    ["<A-Left>"] = { function()
+      vim.cmd "norm! b"
+    end },
+    ["<A-Right>"] = { function()
+      vim.cmd "norm! w"
+    end },
+    ["<A-Up>"] = { function()
+      vim.cmd "norm! k"
+    end },
+    ["<A-Down>"] = { function()
+      vim.cmd "norm! j"
+    end },
+    ["<A-S-Left>"] = { function()
+      vim.cmd "norm! ^"
+    end },
+    ["<A-S-Right>"] = { 
+      "<C-o>$"
+    },
+    ["<A-S-Up>"] = { function()
+      vim.cmd "norm! gg"
+    end },
+    ["<A-S-Down>"] = { function()
+      vim.cmd "norm! G"
+    end },
   },
   n = {
     ["<Esc>"] = {
@@ -85,13 +109,14 @@ return {
     ["cc"] = { '"_cc', desc = "Replace line wihout copy" },
     ["C"] = { '"_C', desc = "Replace rest of line wihout copy" },
 
-    ["<cr>"] = {
+    ["<S-cr>"] = {
       function()
         vim.api.nvim_feedkeys("@q", "m", false)
         require("notify").notify("Applied macro (q)", "info")
       end,
       desc = "Apply macro (q)",
     },
+    ["<A-i>"] = { "<cmd>print test<cr>" },
 
     -- ["*"] = { "*N", desc = "Select all occurences", silent = true },
     ["*"] = {
@@ -110,8 +135,12 @@ return {
     ["<S-h>"] = { "^", desc = "Go to beginning of line" },
     ["<S-m>"] = false, -- Remove binding
 
-    ["<C-u>"] = { "<C-w><C-k>" },
-    ["<C-d>"] = { "<C-w><C-j>" },
+    ["<A-h>"] = { "<C-w><C-h>" },
+    ["<A-l>"] = { "<C-w><C-l>" },
+    ["<A-j>"] = { "<C-w><C-j>" },
+    ["<A-k>"] = { "<C-w><C-k>" },
+    ["<C-h>"] = false,
+    ["<C-l>"] = false,
     ["<C-j>"] = { function() require("neoscroll").scroll(25, true, 50, nil, {}) end, desc = "Scroll down" },
     ["<C-k>"] = { function() require("neoscroll").scroll(-25, true, 50, nil, {}) end, desc = "Scroll up" },
     ["<ScrollWheelUp>"] = { function() require("neoscroll").scroll(-3, false, 1, nil, {}) end, desc = "Scroll down" },
@@ -163,7 +192,7 @@ return {
     -- ["K"] = { function() vim.lsp.buf.hover() end, desc = "Lsp symbol hover" },
     ["gh"] = { OpenDiagnosticIfNoFloat, desc = "Lsp diagnostics hover" },
 
-    ["<S-cr>"] = {
+    ["<cr>"] = {
       function() vim.lsp.buf.format() end,
       desc = "Format buffer",
     },
