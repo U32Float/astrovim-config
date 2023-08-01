@@ -32,9 +32,10 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = false, -- enable or disable format on save globally
+        enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
+          "rust",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -72,7 +73,7 @@ return {
   polish = function()
     vim.g.ready = true
 
-    function set_tree_dir() vim.cmd("cd " .. get_root()) end
+    function set_tree_dir() vim.cmd("cd " .. util.get_root()) end
     vim.api.nvim_create_autocmd("BufEnter", {
       command = "lua set_tree_dir()",
     })

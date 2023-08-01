@@ -1,63 +1,5 @@
 local util = require "user.util"
-
--- returns the root directory based on:
--- * lsp workspace folders
--- * lsp root_dir
--- * root pattern of filename of the current buffer
--- * root pattern of cwd
----@return string
-function get_root()
-  local root_patterns = { ".git", "lua" }
-  ---@type string?
-  local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= "" and vim.loop.fs_realpath(path) or nil
-  ---@type string[]
-  local roots = {}
-  if path then
-    for _, client in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
-      local workspace = client.config.workspace_folders
-      local paths = workspace and vim.tbl_map(function(ws) return vim.uri_to_fname(ws.uri) end, workspace)
-        or client.config.root_dir and { client.config.root_dir }
-        or {}
-      for _, p in ipairs(paths) do
-        local r = vim.loop.fs_realpath(p)
-        if path:find(r, 1, true) then roots[#roots + 1] = r end
-      end
-    end
-  end
-  table.sort(roots, function(a, b) return #a > #b end)
-  ---@type string?
-  local root = roots[1]
-  if not root then
-    path = path and vim.fs.dirname(path) or vim.loop.cwd()
-    ---@type string?
-    root = vim.fs.find(root_patterns, { path = path, upward = true })[1]
-    root = root and vim.fs.dirname(root) or vim.loop.cwd()
-  end
-  ---@cast root string
-  return root
-end
-
--- Function to check if a floating dialog exists and if not
--- then check for diagnostics under the cursor
--- Show diagnostics under the cursor when holding position
-function OpenDiagnosticIfNoFloat()
-  for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if vim.api.nvim_win_get_config(winid).zindex then return end
-  end
-  -- THIS IS FOR BUILTIN LSP
-  vim.diagnostic.open_float(0, {
-    scope = "line",
-    focusable = false,
-    close_events = {
-      "CursorMoved",
-      "CursorMovedI",
-      "BufHidden",
-      "InsertCharPre",
-      "WinLeave",
-    },
-  })
-end
+local tmux = require "nvim-tmux-navigation"
 
 LIGHT_THEME = "gruvbox"
 DARK_THEME = "everforest"
@@ -65,30 +7,6 @@ DARK_THEME = "everforest"
 return {
   i = {
     ["jk"] = { "<Esc>", desc = "Escape insert mode", noremap = true },
-    ["<A-Left>"] = { function()
-      vim.cmd "norm! b"
-    end },
-    ["<A-Right>"] = { function()
-      vim.cmd "norm! w"
-    end },
-    ["<A-Up>"] = { function()
-      vim.cmd "norm! k"
-    end },
-    ["<A-Down>"] = { function()
-      vim.cmd "norm! j"
-    end },
-    ["<A-S-Left>"] = { function()
-      vim.cmd "norm! ^"
-    end },
-    ["<A-S-Right>"] = { 
-      "<C-o>$"
-    },
-    ["<A-S-Up>"] = { function()
-      vim.cmd "norm! gg"
-    end },
-    ["<A-S-Down>"] = { function()
-      vim.cmd "norm! G"
-    end },
   },
   n = {
     ["<Esc>"] = {
@@ -116,7 +34,6 @@ return {
       end,
       desc = "Apply macro (q)",
     },
-    ["<A-i>"] = { "<cmd>print test<cr>" },
 
     -- ["*"] = { "*N", desc = "Select all occurences", silent = true },
     ["*"] = {
@@ -135,10 +52,11 @@ return {
     ["<S-h>"] = { "^", desc = "Go to beginning of line" },
     ["<S-m>"] = false, -- Remove binding
 
-    ["<A-h>"] = { "<C-w><C-h>" },
-    ["<A-l>"] = { "<C-w><C-l>" },
-    ["<A-j>"] = { "<C-w><C-j>" },
-    ["<A-k>"] = { "<C-w><C-k>" },
+    ["<a-h>"] = { function() tmux.NvimTmuxNavigateLeft() end },
+    ["<a-l>"] = { function() tmux.NvimTmuxNavigateRight() end },
+    ["<a-j>"] = { function() tmux.NvimTmuxNavigateDown() end },
+    ["<a-k>"] = { function() tmux.NvimTmuxNavigateUp() end },
+    ["<a-n>"] = false,
     ["<C-h>"] = false,
     ["<C-l>"] = false,
     ["<C-j>"] = { function() require("neoscroll").scroll(25, true, 50, nil, {}) end, desc = "Scroll down" },
@@ -157,7 +75,7 @@ return {
       function()
         require("neo-tree.command").execute {
           toggle = true,
-          dir = get_root(),
+          dir = util.get_root(),
           position = "right",
         }
         -- vim.cmd "Neotree reveal"
@@ -189,8 +107,6 @@ return {
       function() vim.lsp.buf.code_action() end,
       desc = "LSP code action",
     },
-    -- ["K"] = { function() vim.lsp.buf.hover() end, desc = "Lsp symbol hover" },
-    ["gh"] = { OpenDiagnosticIfNoFloat, desc = "Lsp diagnostics hover" },
 
     ["<cr>"] = {
       function() vim.lsp.buf.format() end,
