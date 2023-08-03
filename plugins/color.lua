@@ -29,6 +29,7 @@ function override_gruvbox()
 end
 
 function override_colorscheme()
+  vim.api.nvim_set_hl(0, "CursorColumn", { link="StatusLine", default = false })
   vim.api.nvim_set_hl(0, "HlSearchLens", { link = "DiagnosticVirtualTextInfo", default = false })
   vim.api.nvim_set_hl(0, "HlSearchLensNear", { link = "DiagnosticVirtualTextInfo", default = false })
 end
@@ -41,15 +42,15 @@ function on_colorscheme()
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
+  command = "lua on_colorscheme()",
+})
+vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "everforest",
   command = "lua override_everforest()",
 })
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "gruvbox",
   command = "lua override_gruvbox()",
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  command = "lua on_colorscheme()",
 })
 
 return {

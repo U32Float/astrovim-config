@@ -78,14 +78,22 @@ return {
           dir = util.get_root(),
           position = "right",
         }
-        -- vim.cmd "Neotree reveal"
       end,
       desc = "Explorer NeoTree (root dir)",
     },
     ["<leader>E"] = {
-      function() vim.cmd "Neotree reveal" end,
+      function()
+        require("neo-tree.command").execute {
+          focus = true,
+          reveal = true,
+          dir = util.get_root(),
+          position = "right",
+        }
+      end,
       desc = "Reveal file in tree",
     },
+
+    ["<leader>/"] = {"<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find in current buffer"},
 
     ["<leader>T"] = {
       function()
@@ -123,7 +131,8 @@ return {
       desc = "Toggle virtual text on/off",
     },
 
-    ["<leader>w"] = { "<cmd>HopWordCurrentLine<cr>", desc = "Hop to word in current line", nowait = true },
+    -- ["<leader>w"] = { "<cmd>HopWordCurrentLine<cr>", desc = "Hop to word in current line", nowait = true },
+
     ["<leader>j"] = { "<cmd>HopLineStartAC<cr>", desc = "Hop to line under cursor", nowait = true },
     ["<leader>k"] = { "<cmd>HopLineStartBC<cr>", desc = "Hop to line above cursor", nowait = true },
 
