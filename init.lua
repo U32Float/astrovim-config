@@ -35,7 +35,7 @@ return {
         enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
-          "rust",
+          -- "rust",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -83,6 +83,8 @@ return {
     local theme = util.read("theme", { colorscheme = "everforest", background = "dark" })
     vim.cmd("colorscheme " .. theme.colorscheme)
     vim.cmd("set background=" .. theme.background)
+
+    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, { pattern = "*.wgsl", command = "set filetype=wgsl" })
 
     local cmp = require "cmp"
     cmp.setup {

@@ -27,10 +27,10 @@ return {
     ["cc"] = { '"_cc', desc = "Replace line wihout copy" },
     ["C"] = { '"_C', desc = "Replace rest of line wihout copy" },
 
-    ["<S-cr>"] = {
+    ["<cr>"] = {
       function()
         vim.api.nvim_feedkeys("@q", "m", false)
-        require("notify").notify("Applied macro (q)", "info")
+        -- require("notify").notify("Applied macro (q)", "info")
       end,
       desc = "Apply macro (q)",
     },
@@ -116,7 +116,7 @@ return {
       desc = "LSP code action",
     },
 
-    ["<cr>"] = {
+    ["<S-cr>"] = {
       function() vim.lsp.buf.format() end,
       desc = "Format buffer",
     },

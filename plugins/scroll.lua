@@ -13,8 +13,8 @@ return {
       performance_mode = false, -- Disable "Performance Mode" on all buffers.
     }
     local t = {}
-    t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "50" } }
-    t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "50" } }
+    t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "0" } }
+    t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "0" } }
     require("neoscroll.config").set_mappings(t)
   end,
 }
