@@ -194,4 +194,21 @@ return {
   --     }
   --   end,
   -- },
+  {
+    "dstein64/nvim-scrollview",
+    lazy = false,
+
+    config = function()
+      require("scrollview").setup {
+        excluded_filetypes = { "nerdtree" },
+        current_only = true,
+        winblend = 0,
+        base = "right",
+        hover = true,
+        column = 1,
+        signs_on_startup = { "all" },
+        diagnostics_severities = { vim.diagnostic.severity.ERROR },
+      }
+    end,
+  },
 }

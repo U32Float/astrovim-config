@@ -29,7 +29,8 @@ function override_gruvbox()
 end
 
 function override_colorscheme()
-  vim.api.nvim_set_hl(0, "CursorColumn", { link="StatusLine", default = false })
+  vim.api.nvim_set_hl(0, "CursorColumn", { link = "StatusLine", default = false })
+  vim.api.nvim_set_hl(0, "ScrollView", { link = "StatusLine", default = false })
   vim.api.nvim_set_hl(0, "HlSearchLens", { link = "DiagnosticVirtualTextInfo", default = false })
   vim.api.nvim_set_hl(0, "HlSearchLensNear", { link = "DiagnosticVirtualTextInfo", default = false })
 end
