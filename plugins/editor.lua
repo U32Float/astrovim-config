@@ -200,7 +200,7 @@ return {
 
     config = function()
       require("scrollview").setup {
-        excluded_filetypes = { "nerdtree" },
+        excluded_filetypes = { "nerdtree", "alpha" },
         current_only = true,
         winblend = 0,
         base = "right",
