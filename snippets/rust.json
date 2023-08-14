@@ -1,60 +1,67 @@
 {
-    "Readline items method": {
-        "prefix": "read_line_items",
-        "body": [
-            "fn read_line_items<T>() -> Vec<T> where T: std::str::FromStr, T::Err: std::fmt::Debug, {let mut buffer = String::new();std::io::stdin().read_line(&mut buffer).ok();buffer.split_whitespace().map(|w| w.trim().parse::<T>().unwrap()).collect()}"
-        ]
-    },
-    "Place a horizontal separator": {
-        "prefix": "sep",
-        "body": [
-            "// ----------------------------------------------------------------------------"
-        ]
-    },
-    "Place a segment line with a name": {
-        "prefix": "segment",
-        "body": [
-            "// ----------------------------------------------------------------------------\n// ${name}:"
-        ]
-    },
-    "Place a big segment line": {
-        "prefix": "bigsegment",
-        "body": [
-            "// ============================================================================\n// ==== # ${name}:"
-        ]
-    },
-    "Debug print": {
-        "prefix": "deb",
-        "body": [
-            "println!(\"{:?}\", ${value});"
-        ]
-    },
-    "print": {
-        "prefix": "pri",
-        "body": [
-            "println!(\"${value}\");"
-        ]
-    },
-    "Cloneable handle to some state": {
-      "prefix": "handle",
-      "body": [
-        "#[derive(Clone)]",
-        "pub struct ${1:Handle}(std::sync::Arc<parking_lot::RwLock<${2:State}>>);",
-        "",
-        "impl ${1} {",
-        "  fn read<F, T>(&self, read: F) -> T",
-        "  where F: Fn(&${2}) -> T {",
-        "    read(&self.0.read())",
-        "  }",
-        "",
-        "  fn write<F, T>(&self, write: F) -> T",
-        "  where F: Fn(&mut ${2}) -> T {",
-        "    write(&mut self.0.write())",
-        "  }",
-        "} ",
-        "",
-        "struct ${2} {}"
-      ],
-      "description": "Cloneable handle to some state"
-    }
+  "Readline items method": {
+    "prefix": "read_line_items",
+    "body": [
+      "fn read_line_items<T>() -> Vec<T> where T: std::str::FromStr, T::Err: std::fmt::Debug, {let mut buffer = String::new();std::io::stdin().read_line(&mut buffer).ok();buffer.split_whitespace().map(|w| w.trim().parse::<T>().unwrap()).collect()}"
+    ]
+  },
+  "Place a horizontal separator": {
+    "prefix": "sep",
+    "body": [
+      "// ----------------------------------------------------------------------------"
+    ]
+  },
+  "Place a segment line with a name": {
+    "prefix": "segment",
+    "body": [
+      "// ----------------------------------------------------------------------------\n// ${name}:"
+    ]
+  },
+  "Place a big segment line": {
+    "prefix": "bigsegment",
+    "body": [
+      "// ============================================================================\n// ==== # ${name}:"
+    ]
+  },
+  "Debug print": {
+    "prefix": "deb",
+    "body": ["println!(\"{:?}\", ${value});"]
+  },
+  "print": {
+    "prefix": "pri",
+    "body": ["println!(\"${value}\");"]
+  },
+  "Cloneable handle to some state": {
+    "prefix": "handle",
+    "body": [
+      "#[derive(Clone)]",
+      "pub struct ${1:Handle}(std::sync::Arc<parking_lot::RwLock<${2:State}>>);",
+      "",
+      "impl ${1} {",
+      "  fn read<F, T>(&self, read: F) -> T",
+      "  where F: Fn(&${2}) -> T {",
+      "    read(&self.0.read())",
+      "  }",
+      "",
+      "  fn write<F, T>(&self, write: F) -> T",
+      "  where F: Fn(&mut ${2}) -> T {",
+      "    write(&mut self.0.write())",
+      "  }",
+      "} ",
+      "",
+      "struct ${2} {}"
+    ],
+    "description": "Cloneable handle to some state"
+  },
+  "Setup Criterion bench mark": {
+    "prefix": "crit_setup",
+    "body": [
+      "fn criterion_benchmark(c: &mut Criterion) {",
+      "c.bench_function(\"my bench\", |b| b.iter(|| ${1:my_function()}));",
+      "}",
+
+      "criterion_group!(benches, criterion_benchmark);",
+      "criterion_main!(benches);"
+    ]
+  }
 }
