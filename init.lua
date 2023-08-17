@@ -73,7 +73,11 @@ return {
   polish = function()
     vim.g.ready = true
 
-    function set_tree_dir() vim.cmd("cd " .. util.get_root()) end
+    function set_tree_dir()
+      local root = util.get_root()
+      vim.cmd("cd " .. root)
+      vim.cmd(string.format("call system(\"tmux rename-window '%s'\")", root))
+    end
     vim.api.nvim_create_autocmd("BufEnter", {
       command = "lua set_tree_dir()",
     })
