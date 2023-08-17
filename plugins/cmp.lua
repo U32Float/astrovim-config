@@ -74,6 +74,11 @@ return {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
+        experimental = {
+          ghost_text = {
+            hl_group = "ignore",
+          },
+        },
         mapping = {
           ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
           ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
