@@ -1,4 +1,5 @@
 local util = require "user.util"
+
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -89,39 +90,5 @@ return {
     vim.cmd("set background=" .. theme.background)
 
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, { pattern = "*.wgsl", command = "set filetype=wgsl" })
-
-    local cmp = require "cmp"
-    cmp.setup {
-      sources = {
-        { name = "path" },
-        { name = "nvim_lsp", keyword_length = 1 },
-        { name = "buffer", keyword_length = 3 },
-        { name = "luasnip", keyword_length = 2 },
-      },
-      mapping = {
-        ["<Tab>"] = cmp.mapping.confirm { select = true },
-      },
-      experimental = {
-        ghost_text = {
-          hl_group = "ignore",
-        },
-      },
-      sorting = {
-        comparators = {
-          cmp.config.compare.offset,
-          cmp.config.compare.exact,
-          cmp.config.compare.score,
-          cmp.config.compare.recently_used,
-          cmp.config.compare.locality,
-          cmp.config.compare.kind,
-          cmp.config.compare.sort_text,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
-        },
-      },
-      completion = {
-        completeopt = "menu,menuone",
-      },
-    }
   end,
 }
