@@ -3,7 +3,7 @@ return {
   config = function(plugin, opts)
     local node = {
       hl_group = "Search",
-      virt_text = { { "{*}", "VirtualTextHint" } },
+      -- virt_text = { { "{*}", "VirtualTextHint" } },
     }
     local vis = {
       hl_group = "Normal",

@@ -1,5 +1,6 @@
 local util = require "user.util"
 local tmux = require "nvim-tmux-navigation"
+local ls = require "luasnip"
 
 LIGHT_THEME = "gruvbox"
 DARK_THEME = "everforest"
@@ -26,6 +27,21 @@ return {
     ["c"] = { '"_c', desc = "Replace wihout copy" },
     ["cc"] = { '"_cc', desc = "Replace line wihout copy" },
     ["C"] = { '"_C', desc = "Replace rest of line wihout copy" },
+
+    ["<Tab>"] = {
+      function()
+        if ls.expand_or_jumpable() then ls.jump(1) end
+      end,
+      silent = true,
+      desc = "Jump to next snippet insert point",
+    },
+    ["<S-Tab>"] = {
+      function()
+        if ls.expand_or_jumpable() then ls.jump(-1) end
+      end,
+      silent = true,
+      desc = "Jump to previous snippet insert point",
+    },
 
     ["<cr>"] = {
       function()
