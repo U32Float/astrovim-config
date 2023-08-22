@@ -46,5 +46,23 @@ map("n", "gc", "<Plug>VSCodeCommentary", {})
 map("n", "gcc", "<Plug>VSCodeCommentaryLine", {})
 map("v", "gc", "<Plug>VSCodeCommentary", {})
 
-map("n", "<leader>f", "<Cmd>call VSCodeNotify('editor.action.formatDocument', 0)<CR>", {})
-map("v", "<leader>f", "<Cmd>call VSCodeNotifyVisual('editor.action.formatSelection', 0)<CR><Esc>", {})
+map("n", "<leader>f", "<Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>", {})
+map("v", "<leader>f", "<Cmd>call VSCodeNotifyVisual('editor.action.formatSelection')<CR><Esc>", {})
+
+map("n", "<A-h>", "<cmd>call VSCodeNotify('workbench.action.navigateLeft')<cr>", {})
+map("n", "<A-l>", "<cmd>call VSCodeNotify('workbench.action.navigateRight')<cr>", {})
+map("n", "<A-j>", "<cmd>call VSCodeNotify('workbench.action.navigateDown')<cr>", {})
+map("n", "<A-k>", "<cmd>call VSCodeNotify('workbench.action.navigateUp')<cr>", {})
+
+map("n", "|", "<cmd>call VSCodeNotify('workbench.action.splitEditor')<cr>", {})
+map("n", "\\", "<cmd>call VSCodeNotify('workbench.action.splitEditorDown')<cr>", {})
+
+map("n", "<leader>e", "<cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<cr>", {})
+map("n", "<leader>o", "<cmd>call VSCodeNotify('workbench.view.explorer')<cr>", {})
+
+map("n", "<leader>ff", "<cmd>call VSCodeNotify('workbench.action.quickOpen')<cr>", {})
+
+map("n", "<leader>a", "<cmd>call VSCodeNotify('editor.action.quickFix')<cr>", {})
+
+map("n", "<leader>fr", "<cmd>call VSCodeNotify('find-it-faster.findFiles')<cr>", {})
+map("n", "<leader>ft", "<cmd>call VSCodeNotify('find-it-faster.findWithinFilesWithType')<cr>", {})

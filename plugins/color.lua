@@ -62,6 +62,7 @@ return {
     lazy = false,
     priority = 1000,
   },
+  { "arzg/vim-colors-xcode", lazy = false },
   { "sickill/vim-monokai", lazy = false },
   { "sainnhe/gruvbox-material", lazy = false },
   { "sainnhe/sonokai", lazy = false },

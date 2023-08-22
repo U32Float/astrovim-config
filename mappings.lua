@@ -14,7 +14,9 @@ return {
       function()
         vim.cmd ":noh"
         require("notify").dismiss()
+        ls.unlink_current()
       end,
+      silent = true,
       desc = "Dismiss notifications",
     },
     ["x"] = { '"_x', desc = "Delete char wihout copy" },
@@ -97,7 +99,7 @@ return {
       end,
       desc = "Explorer NeoTree (root dir)",
     },
-    ["<leader>E"] = {
+    ["<leader>r"] = {
       function()
         require("neo-tree.command").execute {
           focus = true,
@@ -107,6 +109,10 @@ return {
         }
       end,
       desc = "Reveal file in tree",
+    },
+    ["<leader>fr"] = {
+      function() vim.cmd "Telescope oldfiles" end,
+      desc = "Search recent files",
     },
 
     ["<leader>/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find in current buffer" },
