@@ -58,7 +58,7 @@ map("n", "|", "<cmd>call VSCodeNotify('workbench.action.splitEditor')<cr>", {})
 map("n", "\\", "<cmd>call VSCodeNotify('workbench.action.splitEditorDown')<cr>", {})
 
 map("n", "<leader>e", "<cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<cr>", {})
-map("n", "<leader>o", "<cmd>call VSCodeNotify('workbench.view.explorer')<cr>", {})
+map("n", "<leader>o", "<cmd>call VSCodeNotify('workbench.action.focusSideBar')<cr>", {})
 
 map("n", "<leader>ff", "<cmd>call VSCodeNotify('workbench.action.quickOpen')<cr>", {})
 
@@ -66,3 +66,5 @@ map("n", "<leader>a", "<cmd>call VSCodeNotify('editor.action.quickFix')<cr>", {}
 
 map("n", "<leader>fr", "<cmd>call VSCodeNotify('find-it-faster.findFiles')<cr>", {})
 map("n", "<leader>ft", "<cmd>call VSCodeNotify('find-it-faster.findWithinFilesWithType')<cr>", {})
+
+map("n", "gr", "<cmd>call VSCodeNotify('references-view.findReferences')<cr>", {})
