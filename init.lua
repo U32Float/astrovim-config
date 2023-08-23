@@ -1,5 +1,8 @@
 local util = require "user.util"
 
+LIGHT_THEME = "gruvbox"
+DARK_THEME = "everforest"
+
 return {
   -- Configure AstroNvim updates
   updater = {

@@ -2,9 +2,6 @@ local util = require "user.util"
 local tmux = require "nvim-tmux-navigation"
 local ls = require "luasnip"
 
-LIGHT_THEME = "gruvbox"
-DARK_THEME = "everforest"
-
 return {
   i = {
     ["jk"] = { "<Esc>", desc = "Escape insert mode", noremap = true },
@@ -194,6 +191,53 @@ return {
     ["<leader>O"] = {
       function() vim.cmd "AerialToggle" end,
       desc = "Toggle outline",
+    },
+
+    ["<leader>m"] = {
+      function()
+        local wins = vim.api.nvim_tabpage_list_wins(0)
+        if #wins > 1 and vim.api.nvim_get_option_value("filetype", { win = wins[1] }) == "neo-tree" then
+          vim.fn.win_gotoid(wins[2]) -- go to non-neo-tree window to toggle alpha
+        end
+        require("alpha").start(false, require("alpha").default_config)
+      end,
+      desc = "Home Screen",
+    },
+
+    ["<leader>h"] = { false, desc = "Harpoon" },
+
+    ["<leader>ha"] = {
+      function()
+        require("harpoon.mark").add_file()
+        require("notify").notify("Added " .. vim.fn.expand "%" .. " to harpoon list")
+      end,
+      desc = "Add file to harpoon list",
+    },
+    ["<leader>hd"] = {
+      function()
+        require("harpoon.mark").rm_file(vim.fn.expand "%")
+        require("notify").notify("Removed " .. vim.fn.expand "%" .. " from harpoon list")
+      end,
+      desc = "Remove file from harpoon list",
+    },
+    ["<leader>hD"] = {
+      function()
+        require("harpoon.mark").clear_all()
+        require("notify").notify "Removed all marks from harpoon list"
+      end,
+      desc = "Remove all marks from harpoon list",
+    },
+    ["<leader>hh"] = {
+      "<cmd>Telescope harpoon marks<cr>",
+      desc = "Open harpoon telescope",
+    },
+    ["<leader>hp"] = {
+      function() require("harpoon.ui").nav_prev() end,
+      desc = "Go to previous harpoon mark",
+    },
+    ["<leader>hn"] = {
+      function() require("harpoon.ui").nav_next() end,
+      desc = "Go to next harpoon mark",
     },
   },
   v = {
