@@ -77,13 +77,8 @@ return {
   polish = function()
     vim.g.ready = true
 
-    function set_tree_dir()
-      local root = util.get_root()
-      vim.cmd("cd " .. root)
-      vim.cmd(string.format("call system(\"tmux rename-window '%s'\")", root))
-    end
     vim.api.nvim_create_autocmd("BufEnter", {
-      command = "lua set_tree_dir()",
+      command = "lua require('user.util').set_workspace()",
     })
 
     vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"]) -- Disable autoremove search hightlights

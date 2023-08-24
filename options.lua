@@ -9,6 +9,7 @@ return {
     wrap = false, -- sets vim.opt.wrap
     swapfile = false,
     confirm = true,
+    cmdheight = 1,
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

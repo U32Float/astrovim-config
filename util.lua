@@ -95,4 +95,20 @@ function Util.OpenDiagnosicIfNoFloat()
   })
 end
 
+function Util.set_workspace()
+  local cwd = vim.fn.getcwd()
+  local root = Util.get_root()
+
+  if cwd == root then return end
+
+  vim.cmd("cd " .. root)
+  vim.cmd(string.format("call system(\"tmux rename-window '%s'\")", root))
+
+  local workspace = read_json "workspace.json"
+  if workspace == nil then return end
+
+  local hide = workspace["hide"]
+  if hide then require("neo-tree").config.filesystem.filtered_items.hide_by_pattern = hide end
+end
+
 return Util

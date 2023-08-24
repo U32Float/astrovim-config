@@ -193,49 +193,38 @@ return {
       desc = "Toggle outline",
     },
 
-    ["<leader>m"] = {
-      function()
-        local wins = vim.api.nvim_tabpage_list_wins(0)
-        if #wins > 1 and vim.api.nvim_get_option_value("filetype", { win = wins[1] }) == "neo-tree" then
-          vim.fn.win_gotoid(wins[2]) -- go to non-neo-tree window to toggle alpha
-        end
-        require("alpha").start(false, require("alpha").default_config)
-      end,
-      desc = "Home Screen",
-    },
+    ["<leader>m"] = { false, desc = "Marks / Harpoon" },
 
-    ["<leader>h"] = { false, desc = "Harpoon" },
-
-    ["<leader>ha"] = {
+    ["<leader>ma"] = {
       function()
         require("harpoon.mark").add_file()
         require("notify").notify("Added " .. vim.fn.expand "%" .. " to harpoon list")
       end,
       desc = "Add file to harpoon list",
     },
-    ["<leader>hd"] = {
+    ["<leader>md"] = {
       function()
         require("harpoon.mark").rm_file(vim.fn.expand "%")
         require("notify").notify("Removed " .. vim.fn.expand "%" .. " from harpoon list")
       end,
       desc = "Remove file from harpoon list",
     },
-    ["<leader>hD"] = {
+    ["<leader>mD"] = {
       function()
         require("harpoon.mark").clear_all()
         require("notify").notify "Removed all marks from harpoon list"
       end,
       desc = "Remove all marks from harpoon list",
     },
-    ["<leader>hh"] = {
-      "<cmd>Telescope harpoon marks<cr>",
+    ["<leader>mm"] = {
+      function() require("harpoon.ui").toggle_quick_menu() end,
       desc = "Open harpoon telescope",
     },
-    ["<leader>hp"] = {
+    ["<leader>mp"] = {
       function() require("harpoon.ui").nav_prev() end,
       desc = "Go to previous harpoon mark",
     },
-    ["<leader>hn"] = {
+    ["<leader>mn"] = {
       function() require("harpoon.ui").nav_next() end,
       desc = "Go to next harpoon mark",
     },
