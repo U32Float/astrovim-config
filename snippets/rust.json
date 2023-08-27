@@ -68,7 +68,7 @@
     "prefix": "primi",
     "body": ["usize, u64, u32, isize, i64, i32, f32"]
   },
-  "macro with multiple arguments": {
+  "Macro with multiple arguments": {
     "prefix": "macro_array",
     "body": [
       "macro_rules! ${1:my_macro} {",
@@ -78,6 +78,18 @@
       "       )*",
       "    }",
       "}"
+    ]
+  },
+  "PartialEq max": {
+    "prefix": "max",
+    "body": [
+      "#[rustfmt::skip] if ${1} >= ${2} { ${1} } else { ${2} }"
+    ]
+  },
+  "PartialEq min": {
+    "prefix": "min",
+    "body": [
+      "#[rustfmt::skip] if ${1} <= ${2} { ${1} } else { ${2} }"
     ]
   }
 }
