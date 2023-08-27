@@ -27,20 +27,20 @@ return {
     ["cc"] = { '"_cc', desc = "Replace line wihout copy" },
     ["C"] = { '"_C', desc = "Replace rest of line wihout copy" },
 
-    ["<Tab>"] = {
-      function()
-        if ls.expand_or_jumpable() then ls.jump(1) end
-      end,
-      silent = true,
-      desc = "Jump to next snippet insert point",
-    },
-    ["<S-Tab>"] = {
-      function()
-        if ls.expand_or_jumpable() then ls.jump(-1) end
-      end,
-      silent = true,
-      desc = "Jump to previous snippet insert point",
-    },
+    -- ["<Tab>"] = {
+    --   function()
+    --     if ls.expand_or_jumpable() then ls.jump(1) end
+    --   end,
+    --   silent = true,
+    --   desc = "Jump to next snippet insert point",
+    -- },
+    -- ["<S-Tab>"] = {
+    --   function()
+    --     if ls.expand_or_jumpable() then ls.jump(-1) end
+    --   end,
+    --   silent = true,
+    --   desc = "Jump to previous snippet insert point",
+    -- },
 
     ["<cr>"] = {
       function()
