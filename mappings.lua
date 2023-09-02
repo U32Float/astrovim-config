@@ -76,13 +76,6 @@ return {
     ["<C-l>"] = false,
     ["<C-j>"] = { function() require("neoscroll").scroll(25, false, 60, nil, {}) end, desc = "Scroll down" },
     ["<C-k>"] = { function() require("neoscroll").scroll(-25, false, 60, nil, {}) end, desc = "Scroll up" },
-    -- ["<ScrollWheelUp>"] = { function() require("neoscroll").scroll(-5, true, 10, nil, {}) end, desc = "Scroll down" },
-    -- ["<ScrollWheelDown>"] = { function() require("neoscroll").scroll(5, true, 10, nil, {}) end, desc = "Scroll up" },
-    -- ["<ScrollWheelUp-C>"] = {
-    --   function() require("neoscroll").scroll(-4, false, 1, nil, {}) end,
-    --   desc = "Scroll down",
-    -- },
-    -- ["<ScrollWheelDown-C>"] = { function() require("neoscroll").scroll(4, false, 1, nil, {}) end, desc = "Scroll up" },
 
     ["<leader>L"] = { "<cmd>Lazy<cr>", desc = "Open Lazy" },
 
@@ -93,6 +86,7 @@ return {
           dir = util.get_root(),
           position = "right",
         }
+        vim.cmd "WindowsEqualize"
       end,
       desc = "Explorer NeoTree (root dir)",
     },

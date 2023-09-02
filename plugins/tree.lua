@@ -4,6 +4,7 @@ return {
   dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" },
   config = function()
     require("neo-tree").setup {
+      enable_git_status = false,
       window = {
         position = "right",
         mappings = {
