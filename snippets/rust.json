@@ -82,14 +82,23 @@
   },
   "PartialEq max": {
     "prefix": "max",
-    "body": [
-      "#[rustfmt::skip] if ${1} >= ${2} { ${1} } else { ${2} }"
-    ]
+    "body": ["#[rustfmt::skip] if ${1} >= ${2} { ${1} } else { ${2} }"]
   },
   "PartialEq min": {
     "prefix": "min",
+    "body": ["#[rustfmt::skip] if ${1} <= ${2} { ${1} } else { ${2} }"]
+  },
+  "Skip format": {
+    "prefix": "skip",
+    "body": "#[rustfmt::skip]"
+  },
+  "AoC input": {
+    "prefix": "aoc_input",
     "body": [
-      "#[rustfmt::skip] if ${1} <= ${2} { ${1} } else { ${2} }"
+      "#[cfg(debug_assertions)]",
+      "let input = include_str!(\"../ex1.txt\");",
+      "#[cfg(not(debug_assertions))]",
+      "let input = include_str!(\"../in.txt\");"
     ]
   }
 }
