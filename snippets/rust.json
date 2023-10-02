@@ -80,6 +80,32 @@
       "}"
     ]
   },
+  "Macro for all pairs": {
+    "prefix": "macro_pairs",
+    "body": [
+      "macro_rules! for_all_pairs {",
+      "(\\$mac:ident: \\$(\\$x:ident),*) => {",
+      "for_all_pairs!(@inner \\$mac: \\$(\\$x),*; \\$(\\$x),*);",
+      "};",
+      "(@inner \\$mac:ident: ; \\$(\\$x:ident),*) => {};",
+      "(@inner \\$mac:ident: \\$head:ident \\$(,)? \\$(\\$tail:ident),*; \\$(\\$x:ident),*) => {",
+      "\\$(",
+      "\\$mac!(\\$head \\$x);",
+      ")*",
+      "for_all_pairs!(@inner \\$mac: \\$(\\$tail),*; \\$(\\$x),*);",
+      "};",
+      "}",
+      "",
+      "macro_rules! ${1: for_pair} {",
+      "(\\$a:ident \\$b:ident) => {",
+      "${2}",
+      "};",
+      "}",
+      "",
+      "// E.g.: for_all_pairs!(${1}: f32, u32, i32);",
+      "for_all_pairs!(${1}: ${3});"
+    ]
+  },
   "PartialEq max": {
     "prefix": "max",
     "body": ["#[rustfmt::skip] if ${1} >= ${2} { ${1} } else { ${2} }"]
