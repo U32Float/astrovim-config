@@ -80,19 +80,46 @@
       "}"
     ]
   },
-  "Macro for all pairs": {
-    "prefix": "macro_pairs",
+  "Macro for all pairs inclusive": {
+    "prefix": "macro_pairs_inclusive",
     "body": [
-      "macro_rules! for_all_pairs {",
+      "macro_rules! for_all_pairs_inclusive {",
       "(\\$mac:ident: \\$(\\$x:ident),*) => {",
-      "for_all_pairs!(@inner \\$mac: \\$(\\$x),*; \\$(\\$x),*);",
+      "for_all_pairs_inclusive!(@inner \\$mac: \\$(\\$x),*; \\$(\\$x),*);",
       "};",
       "(@inner \\$mac:ident: ; \\$(\\$x:ident),*) => {};",
       "(@inner \\$mac:ident: \\$head:ident \\$(,)? \\$(\\$tail:ident),*; \\$(\\$x:ident),*) => {",
       "\\$(",
       "\\$mac!(\\$head \\$x);",
       ")*",
-      "for_all_pairs!(@inner \\$mac: \\$(\\$tail),*; \\$(\\$x),*);",
+      "for_all_pairs_inclusive!(@inner \\$mac: \\$(\\$tail),*; \\$(\\$x),*);",
+      "};",
+      "}",
+      "",
+      "macro_rules! ${1: for_pair} {",
+      "(\\$a:ident \\$b:ident) => {",
+      "${2}",
+      "};",
+      "}",
+      "",
+      "// E.g.: for_all_pairs_inclusive!(${1}: f32, u32, i32);",
+      "for_all_pairs_inclusive!(${1}: ${3});"
+    ]
+  },
+  "Macro for all pairs exclusive": {
+    "prefix": "macro_pairs",
+    "body": [
+      "macro_rules! for_all_pairs {",
+      "(\\$mac:ident: \\$head:ident \\$(,)? \\$(\\$tail:ident),*) => {",
+      "for_all_pairs!(@inner \\$mac: \\$head,\\$(\\$tail),*; \\$(\\$tail),*; \\$head);",
+      "};",
+      "(@inner \\$mac:ident: ; \\$(\\$x:ident),* ; \\$y:ident) => {};",
+      "(@inner \\$mac:ident: \\$h1:ident \\$(,)? \\$(\\$t1:ident),*; \\$h2:ident \\$(,)? \\$(\\$t2:ident),*; \\$store:ident) => {",
+      "\\$mac!(\\$h1 \\$h2);",
+      "\\$(",
+      "\\$mac!(\\$h1 \\$t2);",
+      ")*",
+      "for_all_pairs!(@inner \\$mac: \\$(\\$t1),*; \\$(\\$t2),*,\\$store; \\$h2);",
       "};",
       "}",
       "",
