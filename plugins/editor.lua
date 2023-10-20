@@ -207,7 +207,7 @@ return {
         hover = true,
         column = 1,
         signs_on_startup = { "all" },
-        diagnostics_severities = { vim.diagnostic.severity.WARN },
+        diagnostics_severities = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR},
       }
     end,
   },

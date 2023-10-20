@@ -5,18 +5,13 @@
       "fn read_line_items<T>() -> Vec<T> where T: std::str::FromStr, T::Err: std::fmt::Debug, {let mut buffer = String::new();std::io::stdin().read_line(&mut buffer).ok();buffer.split_whitespace().map(|w| w.trim().parse::<T>().unwrap()).collect()}"
     ]
   },
-  "Parse items method": {
+  "Parse items": {
     "prefix": "parse_items",
     "body": [
-      "fn parse_items<T>(input: &str, sep: Option<&str>) -> Vec<T> where",
-      "T: std::str::FromStr,",
-      "T::Err: std::fmt::Debug,",
-      "{",
       "input",
-      ".split(sep.unwrap_or(\" \"))",
-      ".map(|w| w.trim().parse::<T>().unwrap())",
-      ".collect()",
-      "}"
+      ".split(${1: \" \"})",
+      ".map(|w| w.trim().parse::<${2: T}>().unwrap())",
+      ".collect()"
     ]
   },
   "Place a horizontal separator": {
