@@ -1,5 +1,8 @@
 local util = require "user.util"
 
+LIGHT_THEME = "gruvbox"
+DARK_THEME = "everforest"
+
 function override_everforest()
   vim.g.everforest_background = "dark"
   vim.g.everforest_colors_override = {
