@@ -74,9 +74,6 @@ return {
   polish = function()
     vim.g.ready = true
 
-    vim.cmd"set shiftwidth=4"
-    vim.cmd"set tabstop=4"
-
     vim.api.nvim_create_autocmd("BufEnter", {
       command = "lua require('user.util').set_workspace()",
     })
