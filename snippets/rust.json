@@ -40,6 +40,10 @@
     "prefix": "pri",
     "body": ["println!(\"${value}\");"]
   },
+  "new": {
+    "prefix": "new",
+    "body": ["fn new() -> Self {", "Self {}", "}"]
+  },
   "Cloneable handle to some state": {
     "prefix": "handle",
     "body": [
